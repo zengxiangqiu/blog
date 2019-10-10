@@ -1,0 +1,89 @@
+extends wq_layout.pug
+
+block append styles
+    meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
+    link(rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous")
+    link(rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.15.4/dist/bootstrap-table.min.css")
+    link(rel='stylesheet', href='/stylesheets/article.css')
+    link(rel='stylesheet', href='/stylesheets/index.css')
+    link(rel='stylesheet', href='/stylesheets/github.css')
+    link(rel='stylesheet', href='/stylesheets/github-markdown.css')
+    link(rel='stylesheet', href='/stylesheets/log.css')
+block content
+
+    table(data-toggle="table" 
+    data-pagination="true"  
+    data-search="true" 
+    data-detail-view="true"
+    data-detail-formatter="detailFormatter"
+    data-show-columns="true"
+    data-sort-name="Date"
+    data-sort-order="desc"
+)
+
+      thead
+        tr
+          th(data-field='logKey') logKey
+          th(data-sortable="true" data-field='Date') Date
+          th(data-sortable='true' data-field='logger') logger
+          th logVisitor
+          th logMethod
+          th(data-field='Message' data-visible="false") Message
+          th result
+      tbody
+        each val in  logRecords 
+          tr
+            - var date  = val.Date.toISOString();
+            if val.Logger.includes('IMasterPicture')
+              td
+                a(href="/sys/imaster/picture/log/"+ date.substring(0,10).replace(new RegExp('-', 'g'),''))=val.logKey
+            else
+              td=val.logKey
+            td= date
+            td= val.Logger
+            td= val.logVisitor
+            td= val.logMethod
+            td= val.Message
+            - 
+              var resultStr = "";
+              try
+              {
+                 var rObj=JSON.parse(val.Message);
+              }
+              catch(error)
+              {
+                resultStr = 'Json转换失败';
+              }
+              if (rObj.state == '1')
+              {
+                resultStr = "成功";
+              }
+              else if(rObj.state == null)
+              {
+                if(JSON.parse(rObj.content).state == "1")                
+                {
+                  resultStr = "成功";
+                }
+                else
+                {
+                  resultStr = "失败";  
+                }
+              }
+              else
+              {
+                resultStr = "失败";
+              }
+            td= resultStr
+                
+    block append javascripts    
+        script.
+            function detailFormatter(index, row) {
+                var html = []
+                var Message = row['Message'];
+                html.push('<div style = "width:830px;overflow-x:scroll"><b>' + '结果' + ':</b> ' + Message + '</div>');
+                return html.join('')
+            }
+    
+
+
+

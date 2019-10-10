@@ -1,0 +1,45 @@
+doctype html
+html
+  head
+    title= title
+    meta(charset='utf-8')
+    //link(rel='stylesheet', href='/stylesheets/style.css')
+
+    block styles
+
+  body
+    header
+        div.container.clearfix
+    div.container.clearfix 
+        main
+            block content
+        if asideContent
+            aside
+                div.aside-box#asideCategory
+                    h3.aside-title Category
+                    div.aside-content
+                        ul
+                            each asideCategory in asideContent
+                                li
+                                    a.clearfix(href='/doc?category='+asideCategory.id)
+                                        span.tile.oneline #{asideCategory.category}
+                                        span.count.float-right #{asideCategory.qty}
+                div.aside-box#asideSystem
+                    h3.aside-title System
+                    div.aside-content
+                        ul
+                            li
+                            a.clearfix(href='/sys/swash',target='_blank')
+                                span.tile.oneline Swash
+                            li
+                            a.clearfix(href='/sys/swash/log')
+                                span.tile.oneline Log
+                div.aside-box#asideWq
+                    h3.aside-title WQAutoPost
+                        ul
+                            li
+                                block wq 
+
+
+    block javascripts
+        script(src='/javascripts/common.js')        

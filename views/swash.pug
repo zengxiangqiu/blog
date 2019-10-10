@@ -1,0 +1,35 @@
+doctype html
+html
+    head
+        title= title
+        meta(charset='utf-8')
+        link(rel='stylesheet', href='/stylesheets/layout.css')
+        link(rel="stylesheet", href="/stylesheets/swagger-ui.css", type="text/css")
+        link(rel='stylesheet', href='/stylesheets/swash.css')
+    body 
+        div(id='swagger-ui')
+        script(src="/javascripts/swagger-ui-bundle.js")
+        script(src="/javascripts/swagger-ui-standalone-preset.js")    
+        script.
+            window.onload = function() {
+              // Begin Swagger UI call region
+              const ui = SwaggerUIBundle({
+                url: "/Swash.yaml",
+                dom_id: '#swagger-ui',
+                deepLinking: true,
+                presets: [
+                  SwaggerUIBundle.presets.apis,
+                  //SwaggerUIStandalonePreset
+                ],
+                plugins: [
+                  SwaggerUIBundle.plugins.DownloadUrl
+                ],
+                // layout: "StandaloneLayout"
+              })
+              // End Swagger UI call region
+
+              window.ui = ui
+            }
+
+
+ 

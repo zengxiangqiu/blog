@@ -1,0 +1,33 @@
+extends wq_layout.pug
+
+block append styles
+  link(rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css")
+  link(rel="stylesheet" href="/stylesheets/post.css")
+  link(rel='stylesheet', href='/stylesheets/index.css')
+  script(src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js")
+block content
+  div
+    form(action='/doc' method='post')
+      ul.form-style-1
+        li
+          input(type='hidden' name='id' value=post.id)
+        li
+          label 标题
+              span.required *
+          input(type='text' name='title' class='field-divided' value=post.title)
+        li
+          label 分类
+              span.required *
+          select.field-select(name='categoryId')
+            each val in categories
+              if val.id == post.categoryId
+                option(value=val.id selected)=val.name
+              else 
+                option(value=val.id)=val.name
+        li
+          label 内容
+          textarea(name='content')=post.content
+        li
+          input(type='submit' value='Submit')
+  script.
+      var simplemde = new SimpleMDE();

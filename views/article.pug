@@ -1,0 +1,19 @@
+extends wq_layout.pug
+
+block append styles
+    link(rel='stylesheet', href='/stylesheets/article.css')
+    link(rel='stylesheet', href='/stylesheets/index.css')
+    link(rel='stylesheet', href='/stylesheets/github.css')
+    link(rel='stylesheet', href='/stylesheets/github-markdown.css')
+block content
+    div.blog-content-box
+        div.article-header-box
+            div.article-header
+                div.article-title-box
+                    h1.title-article #{post.title}
+        article.markdown-body
+            div!=post.content
+block append javascripts
+    script(src='/javascripts/highlight.pack.js')
+    script.
+        hljs.initHighlightingOnLoad();

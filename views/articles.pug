@@ -1,0 +1,16 @@
+extends wq_layout.pug
+
+block append styles
+    link(rel='stylesheet', href='/stylesheets/index.css')
+    
+block content
+    div.article-list
+        each post in posts
+            div.article-item-box
+                h4 
+                    a(href=post.url) 
+                        span.article-type.type-1.float-none 秋  
+                        | #{post.title}
+                p.content
+                    a(href=post.url)=post.content
+          

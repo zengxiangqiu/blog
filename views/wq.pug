@@ -1,0 +1,17 @@
+extends wq_layout.pug
+
+block append styles
+    link(rel='stylesheet', href='/stylesheets/index.css')
+    link(rel='stylesheet', href='/stylesheets/log.css')
+block content
+    div.article-list
+        div.article-item-box
+            h1=date
+            each val, index in logRecords
+                p.log_record 
+                    span.log_date=val.Date
+                    span.log_message=val.Message
+
+
+ 
+

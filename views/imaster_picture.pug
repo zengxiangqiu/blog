@@ -1,0 +1,12 @@
+extends wq_layout.pug
+
+block append styles
+    link(rel='stylesheet', href='/stylesheets/index.css')
+    link(rel='stylesheet', href='/stylesheets/log.css')
+block content
+    div.article-list
+        div.article-item-box
+            h1=date
+                div.log_picture
+                    pre=articleContent
+                    
