@@ -2,3 +2,6 @@ node_modules/
 .vscode/
 database.sqlite
 public/documents/
+*~
+_vimInfo
+public/imgages/**
