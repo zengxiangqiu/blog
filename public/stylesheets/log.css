@@ -1,0 +1,37 @@
+.log_record{
+    margin-bottom:0.2em;
+}
+    .log_record>p{
+        margin-bottom:0.2em;
+    }
+
+.log_content>span {
+    margin-left:10px;
+}
+
+.log_content{
+    margin-left:-50px;
+    //overflow-y:scroll;    
+    //max-height: 708px;
+    background-color:white;
+    margin-top:-1em;
+}
+
+    .log_content>p{
+        margin-top:1px; 
+        margin-bottom:2px;
+        padding-left:1em;
+    }
+
+    .log_content>h1{
+        padding-left:0.5em;
+    }
+
+.log_message{
+     color: #111;
+}
+
+.log_date{
+    margin-right:15px;
+    color:darkgray;
+}

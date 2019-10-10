@@ -1,0 +1,14 @@
+main div.blog-content-box {
+    position: relative;
+    padding: 0 24px 16px;
+    background: #fff;
+    -webkit-box-shadow: 0 2px 4px 0 rgba(0,0,0,0.05);
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.05);
+}
+
+main div.blog-content-box .article-header-box {
+    border-bottom: 1px solid #e0e0e0;
+    padding-top: 16px;
+    z-index: 9;
+    background-color: #fff
+}
